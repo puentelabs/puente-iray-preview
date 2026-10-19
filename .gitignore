@@ -1,0 +1,12 @@
+build/
+dist/
+evidence/
+publication/
+.build-tools/
+__pycache__/
+*.pyc
+*.dll
+*.exe
+*.pth
+*.pdb
+*.zip
