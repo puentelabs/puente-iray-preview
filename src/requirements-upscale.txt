@@ -1,0 +1,7 @@
+# Install in a separate CUDA-enabled Python. Do not replace a working GPU stack.
+# Select a compatible CUDA PyTorch build explicitly from pytorch.org.
+torch>=2.6
+spandrel==0.4.2
+optree==0.14.0
+numpy>=2,<3
+Pillow>=11,<13
