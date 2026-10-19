@@ -14,6 +14,18 @@ yet generally available.** The new plugin DLL has passed tests inside Daz Studio
 Distribution binaries remain in draft while the permissions and dependency
 reviews described below are completed. See the [draft release notes](RELEASE_NOTES.md).
 
+## Visual comparison
+
+![Iray portrait comparison: Lanczos reference on the left, neural enhancement and Real-ESRGAN 4x upscaling on the right.](docs/comparison.webp)
+
+**Left:** reference enlarged with Lanczos. **Right:** neural enhancement plus
+Real-ESRGAN 4x upscaling. Both paths start from the same 720 x 720 Iray render
+and are compared at a matching output resolution. This is one scene and one
+configuration; it illustrates changes in the visual finish, not a general
+performance or compatibility benchmark.
+
+[Explore the interactive comparison and processing details](https://puentelabs.org/research/dlss-for-daz/).
+
 ## What it does
 
 - Neural Iray preview inside Daz Studio.
@@ -67,3 +79,4 @@ See the [build instructions](docs/BUILD.md).
 Our code is licensed under MIT. Third-party components retain their own licenses;
 see [third-party notices](THIRD_PARTY_NOTICES.md). Puente Labs is not affiliated
 with or endorsed by NVIDIA or Daz 3D.
+
