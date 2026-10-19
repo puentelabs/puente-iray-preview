@@ -1,0 +1,4 @@
+LIBRARY dsp_PuenteIrayPreview
+EXPORTS
+    getSDKVersion
+    getPluginDefinition
