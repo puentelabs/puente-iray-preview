@@ -1,33 +1,35 @@
-# Instalación — beta 0.3.0-beta.1 en preparación
+# Installation — beta 0.3.0-beta.1 in preparation
 
-La DLL pasó la integración en Daz Studio 6.25.2026.14722, Windows x64, RTX 4090
-y driver 617.42. El paquete sigue en borrador por los permisos documentados.
-No sustituir el plugin que funciona durante una sesión activa.
+[Español](es/installation-draft.md) · [Documentation](README.md)
 
-1. Guardar el trabajo y cerrar Daz Studio.
-2. Si existe una instalación de Puente Iray Preview, conservar una copia de su
-   DLL y de su carpeta auxiliar antes de actualizar.
-3. Copiar el contenido de `plugins/` del paquete a la carpeta `plugins/` de la
-   instalación correcta de Daz Studio. Mantener juntos la DLL y el directorio
-   `PuenteIrayPreview`; no extraer solo la DLL.
-4. Abrir Daz y el panel **Puente Iray Preview**.
-5. En configuración, usar **Importar DLL NR...** para seleccionar el
-   `nvngx_dlssnr.dll` compatible que se tiene derecho a utilizar. El plugin
-   prepara una copia verificada con el helper incluido. Cada combinación se
-   guarda en su propia carpeta; no cambia el original ni descarga DLL.
-6. Iniciar el preview o procesar un render. Los diagnósticos de componentes
-   faltantes aparecen antes de iniciar el render. Si se desea Real-ESRGAN, usar
-   el paquete Full; no hace falta instalar Python, Conda, ComfyUI ni paquetes.
+The DLL passed integration testing with Daz Studio 6.25.2026.14722, Windows x64,
+an RTX 4090, and driver 617.42. The package remains a draft because of the documented
+permissions questions. Do not replace a working plugin during an active session.
 
-Para comprobar solo el paquete puede ejecutarse `puente-worker.exe check`.
-Que ese diagnóstico pase no demuestra por sí solo la compatibilidad NR de la
-GPU; esta se comprueba al procesar una imagen.
+1. Save your work and close Daz Studio.
+2. If Puente Iray Preview is already installed, back up its DLL and supporting
+   folder before upgrading.
+3. Copy the package's `plugins/` contents into the `plugins/` directory of the
+   correct Daz Studio installation. Keep the DLL and `PuenteIrayPreview` directory
+   together; do not extract only the DLL.
+4. Open Daz and the **Puente Iray Preview** pane.
+5. In settings, use **Importar DLL NR...** (Import NR DLL) to select a compatible
+   `nvngx_dlssnr.dll` that you have the right to use. The plugin prepares a verified
+   copy with the included helper. Each combination is stored in its own directory;
+   the original is not changed and no DLL is downloaded.
+6. Start the preview or process a render. Missing-component diagnostics appear
+   before rendering starts. For Real-ESRGAN, use the Full package; no separate
+   installation of Python, Conda, ComfyUI, or packages is needed.
 
-Para volver a la versión anterior, cerrar Daz y restaurar la DLL y carpeta
-auxiliar guardadas. Los renders originales y los runtimes importados permanecen
-fuera de la carpeta del programa. Eliminar el plugin no elimina esos datos.
+To check only the package, run `puente-worker.exe check`. Passing this diagnostic
+does not, by itself, establish NR compatibility with the GPU; that is checked when
+processing an image.
 
-La importación, render/proceso, Direct-to-File, imagen existente, cancelación y
-preview se verificaron en una instancia propia de Daz con esta DLL. Falta la
-prueba de instalación/actualización/desinstalación en Windows limpio. La
-instalación original se preservó durante las pruebas.
+To roll back, close Daz and restore the backed-up DLL and supporting folder.
+Original renders and imported runtimes remain outside the application directory.
+Removing the plugin does not remove those files.
+
+Runtime import, rendering/processing, Direct-to-File, existing-image processing,
+cancellation, and preview were verified in a separate Daz instance with this DLL.
+Installation, upgrade, and uninstallation testing on a clean Windows system is
+still pending. The original installation was preserved during testing.

@@ -1,43 +1,46 @@
-# Construcción local
+# Building locally
 
-El SDK de Daz y Qt deben obtenerse por sus canales oficiales y con sus licencias.
-No se incluyen SDK, cabeceras ni bibliotecas de Daz en el repositorio.
+[Español](es/BUILD.md) · [Documentation](README.md)
+
+Obtain the Daz SDK and Qt through their official channels and under their respective
+licenses. Daz SDK files, headers, and libraries are not included in this repository.
 
 ```powershell
 cmake -S src/daz-plugin -B build/plugin -A x64 `
-  "-DDAZ_SDK_DIR=<SDK de Daz Studio 6>" "-DQt6_DIR=<Qt6/lib/cmake/Qt6>" `
+  "-DDAZ_SDK_DIR=<Daz Studio 6 SDK>" "-DQt6_DIR=<Qt6/lib/cmake/Qt6>" `
   -DPUENTE_ENABLE_VALIDATION_API=OFF -DPUENTE_PACKAGED_ONLY=ON
 cmake --build build/plugin --config Release
 ```
 
-El backend de referencia es `lisitskyaa/ComfyUI-DLSS5-NR`, commit
-`41dcdfa593cb61b6a98c65bb8ed27606260bb598`. Preparar su bridge/helper propios
-siguiendo sus instrucciones y conservar sus avisos. El builder no copia el NR.
-Un Python de construcción Full necesita PyTorch CUDA, spandrel, NumPy, Pillow,
-optree y sus dependencias; PyInstaller 6.22.3 puede residir en carpeta separada.
-El inventario de versiones exactas se guarda en cada paquete generado.
+The reference backend is `lisitskyaa/ComfyUI-DLSS5-NR`, commit
+`41dcdfa593cb61b6a98c65bb8ed27606260bb598`, verified in the local checkout.
+Prepare its bridge and helper following its instructions and retain its notices.
+The builder does not copy the NR runtime. A Full build environment needs Python
+with PyTorch CUDA, spandrel, NumPy, Pillow, optree, and their dependencies.
+PyInstaller 6.22.3 may be kept in a separate directory. An inventory of exact
+versions is saved in each generated package.
 
 ```powershell
-./tools/build-package.ps1 -Python '<Python CUDA de construcción>' `
+./tools/build-package.ps1 -Python '<build-time CUDA Python>' `
   -PluginDll 'build/plugin/Release/dsp_PuenteIrayPreview.dll' `
-  -BackendRoot '<checkout fijado del backend>' -BuildTools '<PyInstaller>' `
-  -Profile Full -ModelDirectory '<modelos oficiales>' `
-  -OutputDirectory 'dist/candidato-nuevo'
+  -BackendRoot '<pinned backend checkout>' -BuildTools '<PyInstaller>' `
+  -Profile Full -ModelDirectory '<official models>' `
+  -OutputDirectory 'dist/new-candidate'
 ```
 
-El perfil Core solo contiene NR + Lanczos. Full conserva Real-ESRGAN. Recoger
-las licencias exactas con `tools/collect-runtime-licenses.py`, incluir los avisos
-complementarios de spandrel y Real-ESRGAN, revisar las bibliotecas nativas
-transitivas y actualizar el manifiesto con `tools/finalize-candidate.py`.
-Un manifiesto generado no constituye por sí mismo autorización de publicación.
+The Core profile contains only NR + Lanczos. Full retains Real-ESRGAN. Collect
+the exact licenses with `tools/collect-runtime-licenses.py`, include supplementary
+spandrel and Real-ESRGAN notices, review transitive native libraries, and update
+the manifest with `tools/finalize-candidate.py`. A generated manifest does not,
+by itself, authorize publication.
 
-Validar el worker real desde una carpeta vacía:
+Validate the actual worker from an empty directory:
 
 ```powershell
-python -B tools/validate-candidate.py --package dist/candidato-nuevo `
-  --input '<render propio.png>' --runtime '<runtime NR del usuario>' `
-  --output evidence/prueba-nueva --neural
+python -B tools/validate-candidate.py --package dist/new-candidate `
+  --input '<your-own-render.png>' --runtime '<user-provided NR runtime>' `
+  --output evidence/new-test --neural
 ```
 
-Repetir la integración en una instancia propia de Daz al cambiar la DLL nativa.
-Nunca reemplazarla con Daz en ejecución.
+Repeat integration testing in a separate Daz instance whenever the native DLL
+changes. Never replace it while Daz is running.

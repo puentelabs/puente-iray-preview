@@ -1,72 +1,74 @@
-# Revisión de permisos del backend para la beta BYO DLL
+# Backend permissions review for the bring-your-own DLL beta
 
-Fecha: 19 de octubre de 2026. Estado: revisión técnica/documental; no equivale
-a autorización de NVIDIA sobre el runtime experimental.
+[Español](es/backend-permissions-review-2026-10-19.md) · [Documentation](README.md)
 
-## Lo que sí está establecido
+Date: 19 October 2026. Status: technical and documentary review; this does not
+constitute NVIDIA authorization to use the experimental runtime.
 
-El backend utilizado es `lisitskyaa/ComfyUI-DLSS5-NR`, commit
-`41dcdfa593cb61b6a98c65bb8ed27606260bb598`, verificado en el checkout local.
-Su archivo LICENSE concede MIT a su código. Las notas del autor incluyen
-expresamente el bridge y el helper entre los materiales propios redistribuibles,
-con la salvedad separada sobre el uso del runtime. Por tanto, no falta una
-licencia nueva del mantenedor para copiar su código MIT conservando los avisos.
+## What has been established
 
-Se deben conservar LICENSE, THIRD_PARTY_NOTICES y el aviso MIT de
-`NIGos/dlss5-bridge` que el backend incorpora. Nuestro código conserva la licencia
-MIT de Puente Labs. No se atribuyen a MIT los derechos de NVIDIA ni los de Daz.
+The backend used is `lisitskyaa/ComfyUI-DLSS5-NR`, commit
+`41dcdfa593cb61b6a98c65bb8ed27606260bb598`, verified in the local checkout.
+Its LICENSE grants MIT terms for its code. The author's notes expressly include
+the bridge and helper among the author's redistributable materials, with a separate
+qualification concerning runtime use. A new license from the maintainer is therefore
+not missing for copying that MIT code while retaining the notices.
 
-Las [notas actuales del backend](https://github.com/lisitskyaa/ComfyUI-DLSS5-NR/blob/main/docs/LEGAL_NOTES.md)
-recomiendan fuente más bridge/helper propios, runtime aportado por el usuario y
-GitHub Releases experimental. Eso describe la postura del mantenedor; no es una
-aprobación contractual de NVIDIA para la integración.
+LICENSE, THIRD_PARTY_NOTICES, and the MIT notice for `NIGos/dlss5-bridge` incorporated
+by the backend must be retained. Our code retains the Puente Labs MIT license.
+Rights belonging to NVIDIA or Daz are not attributed to MIT.
 
-## Qué resuelve BYO DLL
+The [current backend notes](https://github.com/lisitskyaa/ComfyUI-DLSS5-NR/blob/main/docs/LEGAL_NOTES.md)
+recommend source code plus the author's bridge/helper, a user-provided runtime, and
+experimental GitHub Releases. This describes the maintainer's position; it is not
+contractual approval from NVIDIA for the integration.
 
-La beta excluye `nvngx_dlssnr.dll`, `_nvngx.dll`, otros runtimes DLSS, DLL de
-driver, SDK de NVIDIA y archivos del programa Daz. El usuario aporta una copia
-compatible que tiene derecho a usar. Se copia sin parchearla, en una carpeta
-con identificador compacto y verificación SHA-256 junto con el helper. No hay descarga automática ni enlaces a copias
-filtradas/modificadas. El core NGX se obtiene del driver instalado.
+## What bring-your-own DLL setup resolves
 
-Esto resuelve la redistribución de esos binarios por nuestra parte. No acredita
-que cualquier DLL obtenido de Internet tenga una licencia válida, ni establece
-que todos los usos del runtime estén autorizados.
+The beta excludes `nvngx_dlssnr.dll`, `_nvngx.dll`, other DLSS runtimes, driver DLLs,
+the NVIDIA SDK, and Daz application files. The user supplies a compatible copy they
+have the right to use. It is copied without patching into a directory with a compact
+identifier and SHA-256 verification, alongside the helper. There are no automatic
+downloads or links to leaked or modified copies. The NGX core comes from the installed
+driver.
 
-## Cuestiones que siguen abiertas
+This resolves redistribution of those binaries on our part. It does not establish
+that any DLL obtained online has a valid license, or that all runtime uses are authorized.
 
-| Cuestión | Evidencia concreta | Qué falta resolver |
+## Questions that remain open
+
+| Question | Specific evidence | What remains to be resolved |
 | --- | --- | --- |
-| Identificador de aplicación/proyecto | El bridge fijado usa IDs observados y feature ID 18. | Obtener registro/ID de Puente Labs o confirmación de que ese contrato de inicialización es admisible. No sustituirlo por un ID inventado. |
-| Comprobación del caller | El helper está diseñado para que la llamada/retorno se atribuya a su módulo; los comentarios documentan un error cuando no se hace así. | Aclarar si esa integración está autorizada y cómo se relaciona con las restricciones contractuales del runtime. La licencia MIT del helper no responde esa pregunta. |
-| Acuerdo del runtime exacto | La copia usada localmente es aportada por el usuario; no se acreditó una entrega SDK NR a Puente Labs. | Identificar el acuerdo aplicable y el origen autorizado del binario; confirmar uso para imágenes fijas, offline y Daz Studio. |
-| Plataforma/GPU | La prueba local es Windows x64/RTX 4090. | Confirmar soporte autorizado para esa GPU/runtime y validar otras combinaciones antes de anunciarlas. |
-| Aviso de lanzamiento y marcas | La licencia pública RTX/NGX contiene restricciones de marca y un aviso previo para lanzamientos comerciales, incluidos plugins. | Confirmar la aplicabilidad a esta beta gratuita. No asumir que gratuito elimina todas las obligaciones. No usar logotipos ni alegar afiliación/aprobación. |
+| Application/project identifier | The pinned bridge uses observed IDs and feature ID 18. | Obtain a Puente Labs registration/ID or confirmation that this initialization contract is acceptable. Do not substitute an invented ID. |
+| Caller verification | The helper is designed so that the call/return is attributed to its module; comments document an error when this is not done. | Clarify whether this integration is authorized and how it relates to the runtime's contractual restrictions. The helper's MIT license does not answer that question. |
+| Agreement for the exact runtime | The copy used locally is user-provided; delivery of an NR SDK to Puente Labs has not been established. | Identify the applicable agreement and authorized origin of the binary; confirm use for still images, offline processing, and Daz Studio. |
+| Platform/GPU | The local test uses Windows x64/RTX 4090. | Confirm authorized support for that GPU/runtime and validate other combinations before advertising them. |
+| Release notice and trademarks | The public RTX/NGX license contains trademark restrictions and advance notice for commercial releases, including plugins. | Confirm applicability to this free beta. Do not assume that being free removes all obligations. Do not use logos or claim affiliation or approval. |
 
-La [licencia pública RTX/NGX](https://github.com/NVIDIA/DLSS/blob/main/LICENSE.txt)
-restringe la elusión de limitaciones y mecanismos de autenticación. Es necesario
-aclarar su aplicación al contrato experimental y a la comprobación del caller;
-no se presenta aquí una conclusión jurídica de infracción ni de autorización.
+The [public RTX/NGX license](https://github.com/NVIDIA/DLSS/blob/main/LICENSE.txt)
+restricts circumvention of limitations and authentication mechanisms. Its application
+to the experimental contract and caller verification needs clarification; this document
+does not present a legal conclusion of either infringement or authorization.
 
-## Decisión práctica para esta preparación
+## Practical decision for this preparation
 
-Se puede preparar y probar localmente la beta, su repositorio, avisos y archivos
-de distribución. La documentación debe mantener visibles las cuestiones
-anteriores. No se marcará «permisos resueltos» por excluir el DLL propietario.
+The beta, its repository, notices, and distribution files can be prepared and tested
+locally. Documentation must keep the questions above visible. Permissions will not
+be marked as resolved solely because the proprietary DLL is excluded.
 
-El contacto prioritario para cerrar la cuestión del runtime/ID/helper es NVIDIA,
-mediante el canal de licencias que figura en su propia licencia. El mantenedor
-puede aportar contexto técnico y cualquier autorización recibida, pero no puede
-conceder por MIT derechos sobre software o contratos de NVIDIA.
+The priority contact for resolving the runtime/ID/helper question is NVIDIA, through
+the licensing channel identified in its own license. The maintainer can provide
+technical context and any authorization received, but cannot grant rights to NVIDIA
+software or contracts through MIT.
 
-Se prepararon borradores de consulta separados de este repositorio. No se enviaron
-mensajes, correos ni issues a terceros durante esta revisión.
+Draft inquiries were prepared separately from this repository. No messages, emails,
+or issues were sent to third parties during this review.
 
-## Otros componentes del paquete completo
+## Other components of the Full package
 
-El paquete Full conserva Real-ESRGAN y CUDA PyTorch. Se recopilan los avisos de
-las versiones exactas de todas las distribuciones Python incluidas. Esto no se
-confunde con permisos del NR. Hay que revisar además las bibliotecas nativas
-transitivas y los avisos CUDA/cuDNN y documentar los dos pesos oficiales por URL
-y SHA-256. El código de Real-ESRGAN es BSD-3-Clause; la procedencia oficial de
-los pesos se documenta sin atribuirles una licencia separada no publicada.
+The Full package retains Real-ESRGAN and CUDA PyTorch. Notices for the exact versions
+of every included Python distribution are being collected. This is separate from NR
+permissions. Transitive native libraries and CUDA/cuDNN notices must also be reviewed,
+and both official model-weight files must be documented by URL and SHA-256. Real-ESRGAN
+code uses BSD-3-Clause; the official origin of the weights is documented without
+attributing a separate, unpublished license to them.
