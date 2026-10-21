@@ -1,24 +1,27 @@
-# Componentes de terceros
+# Third-party components
 
-La licencia MIT raíz cubre el código de Puente Labs, no los SDK, aplicaciones,
-drivers, runtimes ni modelos de terceros.
+[Español](docs/es/THIRD_PARTY_NOTICES.md)
 
-- Backend de referencia: [ComfyUI-DLSS5-NR](https://github.com/lisitskyaa/ComfyUI-DLSS5-NR),
-  commit `41dcdfa593cb61b6a98c65bb8ed27606260bb598`, MIT. El paquete conserva
-  LICENSE y THIRD_PARTY_NOTICES del backend, incluido el aviso NIGos/dlss5-bridge.
-- El runtime NR y el driver NVIDIA no se incluyen. Sus derechos son separados.
-- El worker incluye Python, NumPy, Pillow y, en Full, PyTorch/torchvision,
-  spandrel y dependencias. Cada paquete conserva sus avisos exactos bajo
-  `plugins/PuenteIrayPreview/licenses/` e inventario de versiones/licencias.
-- PyInstaller utiliza su excepción de bootloader; se conserva COPYING.
-- [spandrel](https://github.com/chaiNNer-org/spandrel) usa MIT, copyright 2024
+The root MIT license covers Puente Labs code, not third-party SDKs, applications,
+drivers, runtimes, or models.
+
+- Reference backend: [ComfyUI-DLSS5-NR](https://github.com/lisitskyaa/ComfyUI-DLSS5-NR),
+  commit `41dcdfa593cb61b6a98c65bb8ed27606260bb598`, MIT. The package retains the
+  backend's LICENSE and THIRD_PARTY_NOTICES, including the NIGos/dlss5-bridge notice.
+- The NVIDIA NR runtime and driver are not included. Rights to those components
+  are separate.
+- The worker includes Python, NumPy, Pillow, and, in Full, PyTorch/torchvision,
+  spandrel, and dependencies. Each package retains the exact notices under
+  `plugins/PuenteIrayPreview/licenses/` and an inventory of versions and licenses.
+- PyInstaller uses its bootloader exception; COPYING is retained.
+- [spandrel](https://github.com/chaiNNer-org/spandrel) uses MIT, copyright 2024
   The ChaiNNer Organization.
-- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) publica su código bajo
-  BSD-3-Clause, copyright 2021 Xintao Wang. Los pesos Full provienen de los
-  releases oficiales x2plus v0.2.1 y x4plus v0.1.0, con SHA-256 fijados en
-  `src/render_worker.py`. No se atribuye a los pesos una licencia separada no
-  publicada; las condiciones exactas se mantienen como revisión pendiente.
+- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) publishes its code under
+  BSD-3-Clause, copyright 2021 Xintao Wang. The Full model weights come from the
+  official x2plus v0.2.1 and x4plus v0.1.0 releases, with SHA-256 hashes pinned in
+  `src/render_worker.py`. No separate, unpublished license is attributed to the
+  weights; the exact terms remain under review.
 
-El SDK y la aplicación Daz y el kit de desarrollo Qt no se redistribuyen aquí.
-La revisión de licencias nativas transitivas de Full y los permisos del contrato
-NR/IDs/helper siguen abiertos. Este aviso no declara cerrada esa revisión.
+The Daz SDK and application and the Qt development kit are not redistributed here.
+The review of Full's transitive native-library licenses and permissions for the
+NR/IDs/helper contract remains open. This notice does not declare that review complete.

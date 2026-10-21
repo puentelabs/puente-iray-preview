@@ -1,5 +1,7 @@
 # Puente Iray Preview
 
+**Documentation:** [English](docs/README.md) | [Español](docs/es/README.md)
+
 **Explore neural previews and process Iray renders directly in Daz Studio.**
 Puente Iray Preview is a free experimental plugin from Puente Labs for
 **Daz Studio 6 on Windows x64**, with optional **Real-ESRGAN 2x/4x upscaling**.
